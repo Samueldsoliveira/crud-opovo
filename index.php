@@ -126,6 +126,42 @@ include_once "./php/conexao.php"; //Eu inclui o conteúdo do arquivo "conexao.ph
     </div>
   </div>
 </div>
+
+    <!-- Modal Editar -->
+    <div class="modal fade" id="editUsuarioModal" tabindex="-1" aria-labelledby="editUsuarioModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editUsuarioModal">Editar Usuário</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-usuario-form"> <!--Seletor form para ser chamado no JS-->
+            <span id="msgAlertaErroEdit"></span> <!--Mensagem de alerta da resposta do IF de erro do custom.js-->
+
+            <input type="hidden" name="id" id="editId">
+
+            <div class="mb-3">
+                <label for="nome" class="col-form-label">Nome:</label>
+                <input type="text" name="nome" class="form-control" id="editNome" placeholder="Digite o nome completo"> <!--Este campo "name" com o valor "nome" é o declarado em $cadusuario em cadastrar.php-->
+
+            </div>
+            <div class="mb-3">
+                <label for="email" class="col-form-label">E-mail:</label>
+                <input type="email" name="email" class="form-control" id="editEmail" placeholder="Digite o seu email"> <!--Este campo "name" com o valor "email" é o declarado em $cadusuario em cadastrar.php-->
+                
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Fechar</button>
+            <input type="submit" class="btn btn-outline-warning btn-sm" id="edit-usuario-btn" value="Salvar" /> <!--Seletor input cadastrar-->
+        </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     
     <!--Caminho do JS Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>

@@ -1,5 +1,7 @@
 const tbody = document.querySelector("tbody"); //Criei uma const chamada "tbody" para receber nosso tbody do HTML.
 const cadForm = document.getElementById("cad-usuario-form") //declarando uma const que recebe o ID declarado no formulário do index.php
+const editForm = document.getElementById("edit-usuario-form")//declarando uma const que recebe o ID declarado no formulário do index.php no modal de edit
+const msgAlertaErroEdit = document.getElementById("msgAlertaErroEdit");//constante que recebe a id do span do HTML
 const msgAlerta = document.getElementById("msgAlerta") //ID declarada do span no modal de index.php
 const cadModal = new bootstrap.Modal(document.getElementById("cadUsuarioModal"));
 
@@ -67,10 +69,56 @@ async function visUsuario(id){ //Função do botão visualizar recebendo o $id d
 
 }
 
-async function editUsuarioDados($id){
+async function editUsuarioDados(id){
+    msgAlertaErroEdit.innerHTML = "";//Isso é para esvaziar o alert de sucesso ao editar quando você fechar o modal e for abrir outro
 
     //console.log("Função editar") //testando se a função está chamando o botão editar.
 
-    const dados = await fetch()
+    const dados = await fetch('./php/visualizar.php?id=' + id);
+    const resposta = await dados.json();
+    //console.log(resposta) outro teste
+
+    if (resposta ['erro']){
+        msgAlerta.innerHTML = resposta['msg'];
+
+    } else {
+        const editModal = new bootstrap.Modal(document.getElementById("editUsuarioModal"));
+        editModal.show();// Oara carregar a janela modal
+        document.getElementById("editId").value = resposta['dados'].id
+        document.getElementById("editNome").value = resposta['dados'].nome
+        document.getElementById("editEmail").value = resposta['dados'].email
+
+
+    }
 
 }
+
+editForm.addEventListener("submit", async(e) => { //Evento escutador do botão Salvar de edit
+    e.preventDefault();
+
+    const dadosForm = new FormData(editForm); //Estou indicando que quero receber os dados do formulário editForm
+
+    /*for (var dados of dadosForm.entries()){
+        console.log(dados[0] + " - " + dados[1]);
+
+    }*/ //Teste para ver se está imprimindo valores usando for of
+
+    const dados = await fetch('./php/editar.php', {
+        method: "POST",
+        body:dadosForm
+    }) //Aguardando a requisição de dados da página editar.php para receber $retorna em json
+
+    const resposta = await dados.json();
+    //console.log(resposta) outro teste
+
+    if(resposta['erro']){ //vou acessando a matriz, primeiro entro em erro e logo após em msg que tem a mensagem.
+
+        msgAlertaErroEdit.innerHTML = resposta['msg'];
+
+    } else {
+        msgAlertaErroEdit.innerHTML = resposta['msg'];
+        listarUsuarios(1); //para salvar assim que pressionar "Salvar"
+
+    }
+    
+})
