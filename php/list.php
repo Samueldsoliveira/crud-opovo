@@ -19,8 +19,11 @@ while ($row_usuario = $result_usuarios -> fetch(PDO::FETCH_ASSOC)){
                     <td>$id</td>
                     <td>$nome</td>
                     <td>$email</td>
-                    <td>Ações</td>
-              </tr>";
+                    <td>
+                        <button id='$id' class='btn btn-outline-primary btn-sm' onclick='visUsuario($id)'>Visualizar</button> 
+                        <button id='$id' class='btn btn-outline-warning btn-sm' onclick='editUsuarioDados($id)'>Editar</button> 
+                    </td> 
+              </tr>"; //Último td se refere ao botão bootstrap do editar e visualizar declarando $id e levando para o nosso JS "custom.js"
 
 }
 

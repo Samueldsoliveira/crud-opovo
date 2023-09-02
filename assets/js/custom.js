@@ -41,3 +41,36 @@ cadForm.addEventListener("submit", async (e) => { //Crio um evento escutando com
 
     listarUsuarios(); //Chamo a const novamente, para que toda vez que clicarmos no evento escutador, o novo usuário ja seja cadastrado sem precisar atualizar a página
 })
+
+async function visUsuario(id){ //Função do botão visualizar recebendo o $id do usuário como parâmetro
+
+    //console.log ("Acessou: " + $id); //testando se a função está chamando o botão visualizar.
+
+    const dados = await fetch('./php/visualizar.php?id=' + id);//envia como parâmetro a variável $id
+
+    const resposta = await dados.json();
+    //console.log(resposta); console para testar se os dados estão chegando corretamente dentro do array e visualiza-los
+
+    if (resposta['erro']){
+        msgAlerta.innerHTML = resposta['msg'] //Utilizo a mensagem 'msg' de dentro do array $resposta de dentro do if em visualizar.php 
+
+    } else {
+    
+        const visModal = new bootstrap.Modal(document.getElementById("visUsuarioModal"));
+        visModal.show();
+
+        document.getElementById("idUsuario").innerHTML = resposta['dados'].id;
+        document.getElementById("nomeUsuario").innerHTML = resposta['dados'].nome;
+        document.getElementById("emailUsuario").innerHTML = resposta['dados'].email;
+
+    }
+
+}
+
+async function editUsuarioDados($id){
+
+    //console.log("Função editar") //testando se a função está chamando o botão editar.
+
+    const dados = await fetch()
+
+}

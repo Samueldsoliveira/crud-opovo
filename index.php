@@ -71,7 +71,7 @@ include_once "./php/conexao.php"; //Eu inclui o conteúdo do arquivo "conexao.ph
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Cadastro -->
 <div class="modal fade" id="cadUsuarioModal" tabindex="-1" aria-labelledby="cadUsuarioModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -97,6 +97,31 @@ include_once "./php/conexao.php"; //Eu inclui o conteúdo do arquivo "conexao.ph
             <input type="submit" class="btn btn-outline-success btn-sm" id="cad-usuario-btn" value="Cadastrar" /> <!--Seletor input cadastrar-->
         </div>
             </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Modal Visualizar -->
+    <div class="modal fade" id="visUsuarioModal" tabindex="-1" aria-labelledby="visUsuarioModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="visUsuarioModal">Detalhes do Usuário:</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <span id="msgAlertaErroVis"></span> <!--Mensagem de alerta da resposta do IF de erro do custom.js-->
+        <dl class="row">
+        <dt class="col-sm-3">ID:</dt>
+        <dd class="col-sm-9"><span id="idUsuario"></span></dd>
+
+        <dt class="col-sm-3">Nome:</dt>
+        <dd class="col-sm-9"><span id="nomeUsuario"></span></dd>
+
+        <dt class="col-sm-3">Email:</dt>
+        <dd class="col-sm-9"><span id="emailUsuario"></span></dd>
+
       </div>
     </div>
   </div>
