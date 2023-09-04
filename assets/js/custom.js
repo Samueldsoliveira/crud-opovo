@@ -124,7 +124,7 @@ editForm.addEventListener("submit", async(e) => { //Evento escutador do botão S
 })
 
 async function apagarUsuarioDados(id){
-    console.log("Acessou a função: " + id)//teste para ver se está recebendo o valor id
+    //console.log("Acessou a função: " + id)//teste para ver se está recebendo o valor id
 
     const dados = await fetch('./php/apagar.php?id= ' + id)
 
